@@ -13,19 +13,19 @@ import LoadingScreen from 'components/loading_screen';
 
 import {Value} from './multiselect';
 
-export type Props<T extends Value> = {
-    ariaLabelRenderer: getOptionValue<T>;
+export type Props = {
+    ariaLabelRenderer: getOptionValue<Value>;
     loading?: boolean;
-    onAdd: (value: T) => void;
+    onAdd: (value: Value) => void;
     onPageChange?: (newPage: number, currentPage: number) => void;
-    onSelect: (value: T | null) => void;
+    onSelect: (value: Value | null) => void;
     optionRenderer: (
-        option: T,
+        option: Value,
         isSelected: boolean,
-        onAdd: (value: T) => void,
-        onMouseMove: (value: T) => void
+        onAdd: (value: Value) => void,
+        onMouseMove: (value: Value) => void
     ) => void;
-    options: T[];
+    options: Value[];
     page: number;
     perPage: number;
 }
@@ -35,7 +35,7 @@ type State = {
 }
 const KeyCodes = Constants.KeyCodes;
 
-export default class MultiSelectList<T extends Value> extends React.Component<Props<T>, State> {
+export default class MultiSelectList extends React.Component<Props, State> {
     public static defaultProps = {
         options: [],
         perPage: 50,
@@ -46,7 +46,7 @@ export default class MultiSelectList<T extends Value> extends React.Component<Pr
     private listRef = React.createRef<HTMLDivElement>()
     private selectedRef = React.createRef<HTMLDivElement>()
 
-    public constructor(props: Props<T>) {
+    public constructor(props: Props) {
         super(props);
 
         this.state = {
@@ -62,7 +62,7 @@ export default class MultiSelectList<T extends Value> extends React.Component<Pr
         document.removeEventListener('keydown', this.handleArrowPress);
     }
 
-    public componentDidUpdate(_: Props<T>, prevState: State) {
+    public componentDidUpdate(_: Props, prevState: State) {
         const options = this.props.options;
         if (options && options.length > 0 && this.state.selected >= 0) {
             this.props.onSelect(options[this.state.selected]);
@@ -126,7 +126,7 @@ export default class MultiSelectList<T extends Value> extends React.Component<Pr
         this.props.onSelect(options[selected]);
     }
 
-    private defaultOptionRenderer = (option: T, isSelected: boolean, onAdd: Props<T>['onAdd'], onMouseMove: (value: T) => void) => {
+    private defaultOptionRenderer = (option: Value, isSelected: boolean, onAdd: Props['onAdd'], onMouseMove: (value: Value) => void) => {
         let rowSelected = '';
         if (isSelected) {
             rowSelected = 'more-modal__row--selected';
@@ -145,7 +145,7 @@ export default class MultiSelectList<T extends Value> extends React.Component<Pr
         );
     }
 
-    private onMouseMove = (option: T) => {
+    private onMouseMove = (option: Value) => {
         const i = this.props.options.indexOf(option);
         if (i !== -1) {
             if (this.state.selected !== i) {
@@ -182,7 +182,7 @@ export default class MultiSelectList<T extends Value> extends React.Component<Pr
                 </div>
             );
         } else {
-            let renderer: Props<T>['optionRenderer'];
+            let renderer: Props['optionRenderer'];
             if (this.props.optionRenderer) {
                 renderer = this.props.optionRenderer;
             } else {

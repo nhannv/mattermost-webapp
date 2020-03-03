@@ -58,7 +58,6 @@ describe('components/RhsComment', () => {
         channelIsArchived: false,
         isConsecutivePost: false,
         handleCardClick: jest.fn(),
-        shortcutReactToLastPostEmittedFrom: '',
         actions: {
             markPostAsUnread: jest.fn(),
         },

@@ -11,13 +11,11 @@ import {makeGetDisplayName} from 'mattermost-redux/selectors/entities/users';
 import {getConfig} from 'mattermost-redux/selectors/entities/general';
 import {get} from 'mattermost-redux/selectors/entities/preferences';
 
-import {markPostAsUnread, emitShortcutReactToLastPostFrom} from 'actions/post_actions.jsx';
+import {markPostAsUnread} from 'actions/post_actions.jsx';
 import {isEmbedVisible} from 'selectors/posts';
 
 import {isArchivedChannel} from 'utils/channel_utils';
 import {Preferences} from 'utils/constants';
-
-import {getShortcutReactToLastPostEmittedFrom} from 'selectors/emojis.js';
 
 import RhsRootPost from './rhs_root_post.jsx';
 
@@ -30,7 +28,6 @@ function mapStateToProps(state, ownProps) {
     const enablePostUsernameOverride = config.EnablePostUsernameOverride === 'true';
     const teamId = ownProps.teamId || getCurrentTeamId(state);
     const channel = getChannel(state, ownProps.post.channel_id) || {};
-    const shortcutReactToLastPostEmittedFrom = getShortcutReactToLastPostEmittedFrom(state);
 
     return {
         author: getDisplayName(state, ownProps.post.user_id),
@@ -46,7 +43,6 @@ function mapStateToProps(state, ownProps) {
         channelDisplayName: channel.display_name,
         isFlagged: get(state, Preferences.CATEGORY_FLAGGED_POST, ownProps.post.id, null) != null,
         compactDisplay: get(state, Preferences.CATEGORY_DISPLAY_SETTINGS, Preferences.MESSAGE_DISPLAY, Preferences.MESSAGE_DISPLAY_DEFAULT) === Preferences.MESSAGE_DISPLAY_COMPACT,
-        shortcutReactToLastPostEmittedFrom,
     };
 }
 
@@ -54,7 +50,6 @@ function mapDispatchToProps(dispatch) {
     return {
         actions: bindActionCreators({
             markPostAsUnread,
-            emitShortcutReactToLastPostFrom
         }, dispatch),
     };
 }

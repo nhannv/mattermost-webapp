@@ -35,7 +35,6 @@ describe('components/dot_menu/DotMenu', () => {
         enableEmojiPicker: true,
         components: {},
         channelIsArchived: false,
-        currentTeamUrl: '',
         actions: {
             flagPost: jest.fn(),
             unflagPost: jest.fn(),

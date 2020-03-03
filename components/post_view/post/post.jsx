@@ -80,16 +80,12 @@ class Post extends React.PureComponent {
         replyCount: PropTypes.number,
 
         /**
-         * To Check if the current post is last in the list
-         */
-        isLastPost: PropTypes.bool,
-
-        /**
          * Whether or not the channel that contains this post is archived
          */
         channelIsArchived: PropTypes.bool.isRequired,
 
         intl: intlShape.isRequired,
+
         actions: PropTypes.shape({
             selectPost: PropTypes.func.isRequired,
             selectPostCard: PropTypes.func.isRequired,
@@ -375,7 +371,6 @@ class Post extends React.PureComponent {
                                 replyCount={this.props.replyCount}
                                 showTimeWithoutHover={!hideProfilePicture}
                                 hover={this.state.hover || this.state.a11yActive}
-                                isLastPost={this.props.isLastPost}
                             />
                             <PostBody
                                 post={post}

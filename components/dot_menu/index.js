@@ -6,7 +6,7 @@ import {bindActionCreators} from 'redux';
 
 import {getChannel} from 'mattermost-redux/selectors/entities/channels';
 import {getLicense, getConfig} from 'mattermost-redux/selectors/entities/general';
-import {getCurrentTeamId, getCurrentTeam} from 'mattermost-redux/selectors/entities/teams';
+import {getCurrentTeamId} from 'mattermost-redux/selectors/entities/teams';
 
 import {openModal} from 'actions/views/modals';
 import {
@@ -19,14 +19,11 @@ import {
 } from 'actions/post_actions.jsx';
 
 import {isArchivedChannel} from 'utils/channel_utils';
-import {getSiteURL} from 'utils/url';
 
 import DotMenu from './dot_menu.jsx';
 
 function mapStateToProps(state, ownProps) {
     const channel = getChannel(state, ownProps.post.channel_id);
-    const currentTeam = getCurrentTeam(state) || {};
-    const currentTeamUrl = `${getSiteURL()}/${currentTeam.name}`;
 
     return {
         channelIsArchived: isArchivedChannel(channel),
@@ -35,7 +32,6 @@ function mapStateToProps(state, ownProps) {
         isLicensed: getLicense(state).IsLicensed === 'true',
         teamId: getCurrentTeamId(state),
         pluginMenuItems: state.plugins.components.PostDropdownMenu,
-        currentTeamUrl,
     };
 }
 

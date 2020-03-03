@@ -4,8 +4,7 @@
 import {connect} from 'react-redux';
 
 import {getCurrentUser} from 'mattermost-redux/selectors/entities/users';
-
-import {GlobalState} from 'types/store';
+import {GlobalState} from 'mattermost-redux/types/store';
 
 import AdminSidebarHeader from './admin_sidebar_header';
 

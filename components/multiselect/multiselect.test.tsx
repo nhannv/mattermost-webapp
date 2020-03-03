@@ -4,10 +4,11 @@
 import React from 'react';
 
 import {shallow} from 'enzyme';
+import {StateManager} from 'react-select/src/stateManager';
 
 import {mountWithIntl} from 'tests/helpers/intl-test-helper';
 
-import MultiSelect, {Value} from './multiselect';
+import MultiSelect from './multiselect';
 import MultiSelectList, {Props as MultiSelectProps} from './multiselect_list';
 
 const element = (props: any) => <div/>;
@@ -56,7 +57,7 @@ describe('components/multiselect/multiselect', () => {
     });
 
     test('MultiSelectList should match state on next page', () => {
-        const renderOption: MultiSelectProps<Value>['optionRenderer'] = (option, isSelected, onAdd, onMouseMove) => {
+        const renderOption: MultiSelectProps['optionRenderer'] = (option, isSelected, onAdd, onMouseMove) => {
             return (
                 <p
                     key={option.id}
@@ -77,7 +78,7 @@ describe('components/multiselect/multiselect', () => {
             <MultiSelect
                 {...baseProps}
                 optionRenderer={renderOption}
-                valueRenderer={renderValue}
+                valueRenderer={renderValue as unknown as typeof StateManager}
             />
         );
 

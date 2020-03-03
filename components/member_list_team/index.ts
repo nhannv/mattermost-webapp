@@ -10,6 +10,7 @@ import {getMembersInCurrentTeam, getCurrentTeamStats} from 'mattermost-redux/sel
 import {getProfilesInCurrentTeam, searchProfilesInCurrentTeam} from 'mattermost-redux/selectors/entities/users';
 import {Permissions} from 'mattermost-redux/constants';
 import {searchProfiles} from 'mattermost-redux/actions/users';
+import {GlobalState} from 'mattermost-redux/types/store';
 import {ActionFunc} from 'mattermost-redux/types/actions';
 import {UserProfile} from 'mattermost-redux/types/users';
 
@@ -17,9 +18,15 @@ import {loadStatusesForProfilesList} from 'actions/status_actions.jsx';
 import {loadProfilesAndTeamMembers, loadTeamMembersForProfilesList} from 'actions/user_actions.jsx';
 import {setModalSearchTerm} from 'actions/views/search';
 
-import {GlobalState} from 'types/store';
-
 import MemberListTeam from './member_list_team';
+
+interface State extends GlobalState {
+    views: {
+        search: {
+            modalSearch: string;
+        };
+    };
+}
 
 type Props = {
     teamId: string;
@@ -43,7 +50,7 @@ type Actions = {
     }>;
 }
 
-function mapStateToProps(state: GlobalState, ownProps: Props) {
+function mapStateToProps(state: State, ownProps: Props) {
     const canManageTeamMembers = haveITeamPermission(state, {team: ownProps.teamId, permission: Permissions.MANAGE_TEAM_ROLES});
 
     const searchTerm = state.views.search.modalSearch;

@@ -13,6 +13,7 @@ import {isCurrentUserSystemAdmin, getCurrentUserId} from 'mattermost-redux/selec
 import {getTeam} from 'mattermost-redux/selectors/entities/teams';
 
 import {General} from 'mattermost-redux/constants';
+import {GlobalState} from 'mattermost-redux/types/store';
 import {GenericAction} from 'mattermost-redux/types/actions';
 
 import {setNavigationBlocked, deferNavigation, cancelNavigation, confirmNavigation} from 'actions/admin_actions.jsx';
@@ -20,8 +21,6 @@ import {getNavigationBlocked, showNavigationPrompt} from 'selectors/views/admin'
 import {getAdminDefinition} from 'selectors/admin_console';
 
 import LocalStorageStore from 'stores/local_storage_store';
-
-import {GlobalState} from 'types/store';
 
 import AdminConsole from './admin_console';
 

@@ -25,7 +25,6 @@ import {
     makeOnSubmit,
     makeOnEditLatestPost,
 } from 'actions/views/create_comment';
-import {emitShortcutReactToLastPostFrom} from 'actions/post_actions';
 import {getPostDraft, getIsRhsExpanded, getSelectedPostFocussedAt} from 'selectors/rhs';
 
 import CreateComment from './create_comment.jsx';
@@ -136,7 +135,6 @@ function makeMapDispatchToProps() {
             onEditLatestPost,
             resetCreatePostRequest,
             getChannelTimezones,
-            emitShortcutReactToLastPostFrom
         }, dispatch);
     };
 }

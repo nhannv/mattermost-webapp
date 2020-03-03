@@ -202,10 +202,7 @@ export function loadProfilesForGroupChannels(groupChannels) {
 
         if (groupChannelsToFetch.length > 0) {
             doDispatch(UserActions.getProfilesInGroupChannels(groupChannelsToFetch));
-            return {data: true};
         }
-
-        return {data: false};
     };
 }
 
