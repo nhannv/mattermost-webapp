@@ -32,6 +32,8 @@ const zhTW = require('./zh-TW.json');
 
 const zhCN = require('./zh-CN.json');
 
+const vi = require('./vi.json');
+
 import {getConfig} from 'mattermost-redux/selectors/entities/general';
 
 import store from 'stores/redux_store.jsx';
@@ -41,8 +43,14 @@ const languages = {
     de: {
         value: 'de',
         name: 'Deutsch',
-        order: 0,
+        order: 4,
         url: de,
+    },
+    vi: {
+        value: 'vi',
+        name: 'Tiếng Việt',
+        order: 1,
+        url: vi,
     },
     en: {
         value: 'en',

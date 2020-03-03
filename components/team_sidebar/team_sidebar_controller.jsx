@@ -111,11 +111,11 @@ export default class TeamSidebar extends React.PureComponent {
                 >
                     <TeamButton
                         btnClass='team-btn__add'
-                        url='/create_team'
+                        url='/create_branch'
                         tip={
                             <FormattedMessage
                                 id='navbar_dropdown.create'
-                                defaultMessage='Create a Team'
+                                defaultMessage='Create a Branch'
                             />
                         }
                         content={'+'}

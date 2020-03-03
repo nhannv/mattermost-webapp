@@ -43,6 +43,7 @@ const LazyLinkingLandingPage = React.lazy(() => import('components/linking_landi
 const LazySelectTeam = React.lazy(() => import('components/select_team'));
 const LazyAuthorize = React.lazy(() => import('components/authorize'));
 const LazyCreateTeam = React.lazy(() => import('components/create_team'));
+const LazyCreateBranch = React.lazy(() => import('components/create_branch'));
 const LazyMfa = React.lazy(() => import('components/mfa/mfa_controller'));
 
 import store from 'stores/redux_store.jsx';
@@ -51,6 +52,7 @@ import {enableDevModeFeatures, isDevMode} from 'utils/utils';
 
 import A11yController from 'utils/a11y_controller';
 
+const CreateBranch = makeAsyncComponent(LazyCreateBranch);
 const CreateTeam = makeAsyncComponent(LazyCreateTeam);
 const ErrorPage = makeAsyncComponent(LazyErrorPage);
 const TermsOfService = makeAsyncComponent(LazyTermsOfService);
@@ -318,6 +320,10 @@ export default class Root extends React.Component {
                     <LoggedInHFTRoute
                         path={'/create_team'}
                         component={CreateTeam}
+                    />
+                    <LoggedInHFTRoute
+                        path={'/create_branch'}
+                        component={CreateBranch}
                     />
                     <LoggedInRoute
                         path={'/mfa'}
